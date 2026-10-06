@@ -39,3 +39,8 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     DeviceProduct=fogos_g
 
 endif
+
+# Drop the generic QTI ueventd.qcom.rc so the device-specific Motorola
+# ueventd.rc (installed via PRODUCT_COPY_FILES) is the sole provider of
+# vendor/etc/ueventd.rc. Placed last so it wins over device/qcom/common.
+PRODUCT_PACKAGES := $(filter-out ueventd.qcom.rc,$(PRODUCT_PACKAGES))
